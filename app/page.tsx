@@ -1,3 +1,5 @@
+import HomePage from "@/pages/home/home-page";
+
 export default function Home() {
-  return <h1>Waku</h1>;
+  return <HomePage />;
 }
