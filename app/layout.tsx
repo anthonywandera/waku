@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header/header";
+import Search from "@/components/search/search";
 
 export const metadata: Metadata = {
   title: "Waku",
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Search />
         <Header />
         {children}
       </body>
