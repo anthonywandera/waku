@@ -4,6 +4,7 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import { BiSupport } from "react-icons/bi";
 import { formatNumber } from "@/util";
+import { FaArrowRight } from "react-icons/fa6";
 
 const platformFeatures: {
   icon: React.ReactNode;
@@ -62,7 +63,7 @@ export default function HeroSection() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="p-12 pt-36"
+      className="p-12 pt-36 -mt-12"
     >
       <article className="flex flex-col gap-6 mb-12">
         <div className="text-5xl font-extrabold flex flex-col gap-2">
@@ -75,13 +76,14 @@ export default function HeroSection() {
           <p>Trusted by anime fans.</p>
         </div>
         <div className="flex gap-3 font-semibold *:rounded-lg *:py-3 *:px-6">
-          <Link href={"#"} className="hero-cta-gradient">
-            Browse Groups
-          </Link>
           <Link
             href={"#"}
-            className="border border-border backdrop-blur-xl flex gap-2 items-center"
+            className="hero-cta-gradient flex items-center gap-4"
           >
+            Explore Crunchyroll Groups
+            <FaArrowRight />
+          </Link>
+          <Link href={"#"} className="flex gap-2 items-center">
             <FaRegPlayCircle className="text-2xl" />
             How it works
           </Link>
