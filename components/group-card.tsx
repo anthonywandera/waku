@@ -32,10 +32,12 @@ export default function GroupCard({ group }: { group: Group }) {
         <div className="w-full">
           <h1 className="mb-1 flex gap-2 justify-between items-center">
             <span className="font-bold text-lg">{group.name}</span>
-            <span className="text-yellow-500 bg-[color-mix(var(--color-yellow-500),transparent_90%)] border border-current p-2 rounded-lg flex items-center gap-1">
-              <FaStar />
-              {/* Refund Guaranteed */}
-            </span>
+            {group.refundProtected && (
+              <span className="text-yellow-500 bg-[color-mix(var(--color-yellow-500),transparent_90%)] border border-current p-2 rounded-lg flex items-center gap-1">
+                <FaStar />
+                {/* Refund Guaranteed */}
+              </span>
+            )}
           </h1>
           <p className="flex gap-1 items-center text-muted">
             <span className="flex gap-1 items-center font-semibold">
@@ -43,10 +45,12 @@ export default function GroupCard({ group }: { group: Group }) {
               {group.rating.toFixed(1)}
             </span>
             <span>(26)</span>
-            <span className="text-info ml-2 bg-[color-mix(var(--info),transparent_90%)] border border-current p-1 rounded-lg flex items-center gap-1">
-              <MdVerifiedUser />
-              Verified Owner
-            </span>
+            {group.isVerified && (
+              <span className="text-info ml-2 bg-[color-mix(var(--info),transparent_90%)] border border-current p-1 rounded-lg flex items-center gap-1">
+                <MdVerifiedUser />
+                Verified Owner
+              </span>
+            )}
           </p>
         </div>
       </div>
@@ -54,7 +58,7 @@ export default function GroupCard({ group }: { group: Group }) {
       <div className="flex items-center gap-2 text-muted mb-2">
         <span>Crunchyroll {group.plan}</span>
         <span className="p-0.5 rounded-full bg-muted"></span>
-        <span>4 profiles</span>
+        <span>{group.maxMembers} profiles</span>
       </div>
 
       <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4">
@@ -73,10 +77,10 @@ export default function GroupCard({ group }: { group: Group }) {
         <progress
           max={4}
           value={3}
-          className="w-full h-2 appearance-none overflow-hidden rounded-full [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-bar]:bg-background [&::-webkit-progress-value]:bg-secondary [&::-moz-progress-bar]:bg-secondary"
+          className="w-full h-2 appearance-none overflow-hidden rounded-full [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-bar]:bg-background [&::-webkit-progress-value]:bg-linear-to-r [&::-webkit-progress-value]:from-secondary [&::-webkit-progress-value]:to-accent [&::-moz-progress-bar]:bg-linear-to-r"
         />
         <div className="flex flex-col items-center">
-          <p className="font-semibold">3 / 4</p>
+          <p className="font-semibold">3 / {group.maxMembers}</p>
           <p className="w-max text-success">1 slot left</p>
         </div>
       </div>
@@ -99,7 +103,7 @@ export default function GroupCard({ group }: { group: Group }) {
         </p>
         <Link
           href={"#"}
-          className="bg-primary py-2 px-8 text-sm rounded-md text-center font-bold"
+          className="hero-cta-gradient py-2 px-8 text-sm rounded-md text-center font-bold"
         >
           Join Group
         </Link>

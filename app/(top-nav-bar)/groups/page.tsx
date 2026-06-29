@@ -1,5 +1,7 @@
 import GroupCard from "@/components/group-card";
 import { groups } from "@/data";
+// import { FaLock, FaStar } from "react-icons/fa6";
+// import { MdVerifiedUser } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
@@ -20,6 +22,20 @@ export default function BrowseGroupsPage() {
         <p className="mb-4 text-muted">
           Find the perfect group and start watching for less.
         </p>
+        {/* <div className="flex gap-4 mb-6 text-xs">
+          <span className="backdrop-blur bg-[color-mix(var(--color-yellow-500),transparent_95%)] border border-[color-mix(var(--color-yellow-500),transparent_70%)] p-2 rounded-lg flex items-center gap-1">
+            <FaStar className="text-yellow-500" />
+            Refund Guaranteed
+          </span>
+          <span className="backdrop-blur bg-[color-mix(var(--info),transparent_95%)] border border-[color-mix(var(--info),transparent_70%)] p-2 rounded-lg flex items-center gap-1">
+            <MdVerifiedUser className="text-info" />
+            Verified Owners
+          </span>
+          <span className="backdrop-blur bg-[color-mix(var(--success),transparent_95%)] border border-[color-mix(var(--success),transparent_70%)] p-2 rounded-lg flex items-center gap-1">
+            <FaLock className="text-success" />
+            Secure Payments
+          </span>
+        </div> */}
         <div className="flex items-center justify-between">
           <div className="border border-border backdrop-blur w-100 rounded-xl flex items-center bg-[color-mix(var(--elevated),transparent_50%)]">
             <label htmlFor="search" className="pl-4 text-2xl">
@@ -41,6 +57,7 @@ export default function BrowseGroupsPage() {
           </button>
         </div>
       </section>
+
       <section className="px-12 pb-12">
         <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
           {groups.map((group) => (
