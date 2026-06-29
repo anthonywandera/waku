@@ -1,17 +1,16 @@
-import "../globals.css";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 
-export default function RootLayout({
+export default function TopNavigationRootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
-      </body>
-    </html>
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
   );
 }
