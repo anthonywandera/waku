@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { FaTelegramPlane } from "react-icons/fa";
+import { FaDiscord, FaInstagram, FaTiktok } from "react-icons/fa6";
+import { IoSendOutline } from "react-icons/io5";
 
 const sitemap: { title: string; links: { title: string; url: string }[] }[] = [
   {
@@ -29,6 +32,14 @@ const sitemap: { title: string; links: { title: string; url: string }[] }[] = [
   },
 ];
 
+const socialLinks: { platform: string; url: string; icon: React.ReactNode }[] =
+  [
+    { platform: "Instagram", url: "#", icon: <FaInstagram /> },
+    { platform: "Discord", url: "#", icon: <FaDiscord /> },
+    { platform: "Telegram", url: "#", icon: <FaTelegramPlane /> },
+    { platform: "TikTok", url: "#", icon: <FaTiktok /> },
+  ];
+
 export default function Footer() {
   return (
     <footer
@@ -41,10 +52,17 @@ export default function Footer() {
       <div className="flex gap-12 border-b border-border py-12 mb-4">
         <article>
           <h1 className="font-bold text-2xl mb-4">WAKU</h1>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted mb-8">
             Waku helps anime fans watch more by sharing crunchyroll plans safely
             and effortlessly.
           </p>
+          <nav className="flex gap-8 text-2xl">
+            {socialLinks.map((link) => (
+              <Link key={link.platform} href={link.url}>
+                {link.icon}
+              </Link>
+            ))}
+          </nav>
         </article>
         <div className="grid grid-cols-3 gap-12 w-full">
           {sitemap.map((site) => (
@@ -66,13 +84,27 @@ export default function Footer() {
           <h1 className="font-bold text-lg mb-4">
             Subscribe to our newsletter
           </h1>
-          <p className="text-sm text-muted">
+          <p className="text-sm text-muted mb-4">
             Get updates on new features and tips for anime fans.
           </p>
+          <form className="border border-border rounded-lg flex">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              className="outline-none p-2"
+            />
+            <button type="submit" className="bg-primary py-2 px-4 rounded-lg">
+              <IoSendOutline />
+            </button>
+          </form>
         </article>
       </div>
       <div className="text-sm flex justify-between">
-        <p className="text-muted">&copy; 2026 Waku. All rights reserved.</p>
+        <p className="text-muted">
+          &copy; {new Date().getFullYear()} Waku. All rights reserved.
+        </p>
         <p>Made with ❤️ for anime fans</p>
       </div>
     </footer>
