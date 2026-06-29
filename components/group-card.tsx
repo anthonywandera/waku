@@ -3,10 +3,22 @@ import { Group } from "@/types";
 import { formatCurrency } from "@/util";
 import Image from "next/image";
 import Link from "next/link";
+import { CiCalendar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
 import { MdVerifiedUser } from "react-icons/md";
 
 export default function GroupCard({ group }: { group: Group }) {
+  function calculateDaysToRenewal(date: string) {
+    const renewalDate = new Date(date);
+    const today = new Date();
+    const difference = renewalDate.getTime() - today.getTime();
+
+    const timeInDays = difference / (1000 * 60 * 60 * 24);
+    return Math.ceil(timeInDays);
+  }
+
+  const renewalDate = calculateDaysToRenewal(group.renewalDate);
+
   return (
     <article className="bg-elevated border border-border rounded-xl p-2 flex flex-col gap-2 text-xs">
       <div className="flex gap-2 items-center mb-2">
@@ -70,8 +82,14 @@ export default function GroupCard({ group }: { group: Group }) {
       </div>
 
       <div className="flex justify-between text-muted border-b pb-4 border-border">
-        <p>@macien_ne</p>
-        <p>Renews in 9 days</p>
+        <p>@{group.ownerId}</p>
+        {renewalDate > 0 ? (
+          <p className="flex items-center gap-1">
+            <CiCalendar /> Renews in {renewalDate} days
+          </p>
+        ) : (
+          <p>{group.status}</p>
+        )}
       </div>
 
       <div className="flex items-center justify-between">
