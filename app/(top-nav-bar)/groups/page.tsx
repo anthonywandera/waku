@@ -1,9 +1,13 @@
 import GroupCard from "@/components/group-card";
 import { groups } from "@/data";
+import { Metadata } from "next";
+import { CiFilter } from "react-icons/ci";
 // import { FaLock, FaStar } from "react-icons/fa6";
 // import { MdVerifiedUser } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
+
+export const metadata: Metadata = { title: "Cruncyroll Groups" };
 
 export default function BrowseGroupsPage() {
   return (
@@ -49,12 +53,17 @@ export default function BrowseGroupsPage() {
               className="outline-none p-3 w-full"
             />
           </div>
-          <button className="border border-border backdrop-blur rounded-xl py-2 px-4 flex gap-4 items-center bg-[color-mix(var(--elevated),transparent_50%)]">
-            <span className="text-muted">Sort by:</span>
-            <span className="flex gap-2 items-center">
-              Recommended <RiArrowDropDownLine className="text-3xl" />
-            </span>
-          </button>
+          <div className="flex gap-4">
+            <button className="border border-border backdrop-blur rounded-xl py-2 px-4 flex gap-4 items-center bg-[color-mix(var(--elevated),transparent_50%)]">
+              <span className="text-muted">Sort by:</span>
+              <span className="flex gap-2 items-center">
+                Recommended <RiArrowDropDownLine className="text-3xl" />
+              </span>
+            </button>
+            <button className="border border-border backdrop-blur rounded-xl py-2 px-4 flex gap-2 items-center bg-[color-mix(var(--elevated),transparent_50%)]">
+              <CiFilter className="text-xl" /> Filters
+            </button>
+          </div>
         </div>
       </section>
 

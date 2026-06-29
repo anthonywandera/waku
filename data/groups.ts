@@ -25,7 +25,8 @@ export const groups: Group[] = [
     name: "Narobi Club",
     ownerId: "kakashei",
     maxMembers: 4,
-    description: "This is an awesome group",
+    description:
+      "We are a chill community of anime lovers. Always renew on time. Join Us!",
     isVerified: false,
     refundProtected: true,
     monthlyPrice: 150,

@@ -1,23 +1,15 @@
 import { groups } from "@/data";
 import { Group } from "@/types";
-import { formatCurrency } from "@/util";
+import { calculateDaysLeft, formatCurrency } from "@/util";
 import Image from "next/image";
 import Link from "next/link";
 import { CiCalendar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
 import { MdVerifiedUser } from "react-icons/md";
+import Progress from "./progress";
 
 export default function GroupCard({ group }: { group: Group }) {
-  function calculateDaysToRenewal(date: string) {
-    const renewalDate = new Date(date);
-    const today = new Date();
-    const difference = renewalDate.getTime() - today.getTime();
-
-    const timeInDays = difference / (1000 * 60 * 60 * 24);
-    return Math.ceil(timeInDays);
-  }
-
-  const renewalDate = calculateDaysToRenewal(group.renewalDate);
+  const renewalDate = calculateDaysLeft(group.renewalDate);
 
   return (
     <article className="bg-elevated border border-border rounded-xl p-2 flex flex-col gap-2 text-xs">
@@ -74,11 +66,7 @@ export default function GroupCard({ group }: { group: Group }) {
             />
           ))}
         </div>
-        <progress
-          max={4}
-          value={3}
-          className="w-full h-2 appearance-none overflow-hidden rounded-full [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-bar]:bg-background [&::-webkit-progress-value]:bg-linear-to-r [&::-webkit-progress-value]:from-secondary [&::-webkit-progress-value]:to-accent [&::-moz-progress-bar]:bg-linear-to-r"
-        />
+        <Progress max={group.maxMembers} value={3} />
         <div className="flex flex-col items-center">
           <p className="font-semibold">3 / {group.maxMembers}</p>
           <p className="w-max text-success">1 slot left</p>
@@ -102,7 +90,7 @@ export default function GroupCard({ group }: { group: Group }) {
           <span className="text-xs font-medium text-muted">/month</span>
         </p>
         <Link
-          href={"#"}
+          href={"/groups/group_id"}
           className="hero-cta-gradient py-2 px-8 text-sm rounded-md text-center font-bold"
         >
           Join Group

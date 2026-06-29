@@ -17,7 +17,7 @@ export default function Header() {
         </div>
         <div className="flex gap-12">
           <Link href={"/"}>Home</Link>
-          <Link href={"/groups"}>Subscriptions</Link>
+          <Link href={"/groups"}>Browse Groups</Link>
           <Link href={"#"}>How it Works</Link>
           <Link href={"#"}>Trust & Safety</Link>
           <Link href={"#"}>FAQ</Link>
