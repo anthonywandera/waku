@@ -13,7 +13,7 @@
 
   --success: #22c55e;
   --warning: #fbbf24;
-  --danger: #ef4444;
+  --error: #ef4444;
   --info: #38bdf8;
 
   --text: #f8fafc;
@@ -31,7 +31,7 @@
   --color-accent: var(--accent);
   --color-success: var(--success);
   --color-warning: var(--warning);
-  --color-danger: var(--danger);
+  --color-error: var(--error);
   --color-info: var(--info);
   --color-text: var(--text);
   --color-muted: var(--muted);

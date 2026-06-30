@@ -13,5 +13,5 @@ export interface User {
   walletBalance: number;
   rating: number;
   totalReviews: number;
-  createdAt: Date;
+  createdAt: string;
 }

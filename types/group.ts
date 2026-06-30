@@ -13,5 +13,6 @@ export interface Group {
   isVerified: boolean;
   refundProtected: boolean;
   rating: number;
+  totalReviews: number;
   createdAt: string;
 }

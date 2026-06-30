@@ -1,18 +1,36 @@
+import Avatar from "@/components/avatar";
 import Progress from "@/components/progress";
-import { groups } from "@/data";
+import { groups, users } from "@/data";
 import { calculateDaysLeft, formatCurrency } from "@/util";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowLeft, FaStar } from "react-icons/fa6";
+import { CiLock } from "react-icons/ci";
+import { FaArrowLeft, FaBan, FaStar } from "react-icons/fa6";
 import { MdVerifiedUser } from "react-icons/md";
 
 const group = groups[1];
+const owner = users[1];
 
 export const metadata: Metadata = {
   title: group.name,
   description: group.description,
 };
+
+function formatDate(date: string, options?: Intl.DateTimeFormatOptions) {
+  const formatter = new Intl.DateTimeFormat(navigator.language, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    ...options,
+  });
+
+  return formatter.format(new Date(date));
+}
+
+function getStars(value: number) {
+  return Array.from({ length: value }, (_, i) => <FaStar key={i} />);
+}
 
 function PlanInfo({ name, value }: { name: string; value: string }) {
   return (
@@ -61,43 +79,60 @@ export default function GroupDetailsPage() {
                 Refund Guaranteed
               </span>
             </div>
-            <p className="mb-2 text-sm">@{group.ownerId}</p>
+            <p className="mb-2 text-sm flex items-center gap-1">
+              <Avatar
+                src={owner.avatar}
+                alt={owner.username}
+                size={50}
+                className="w-8 h-8"
+              />
+              @{group.ownerId}
+            </p>
             <p className="flex items-center gap-2">
               <FaStar className="text-yellow-500" />
               <span className="text-lg font-semibold">
                 {group.rating.toFixed(1)}{" "}
               </span>
-              <span className="text-sm text-muted">(22 reviews)</span>
+              <span className="text-sm text-muted">
+                ({group.totalReviews} reviews)
+              </span>
             </p>
           </div>
         </article>
 
-        <article className="p-6 w-150 border border-border rounded-2xl bg-elevated flex flex-col gap-6 h-fit">
-          <h1>
-            <span className="text-3xl font-bold">
-              {formatCurrency(group.monthlyPrice)}
-            </span>
-            <span className="text-muted">&nbsp;/&nbsp;month</span>
-          </h1>
+        <article className="w-150 border border-border rounded-2xl bg-elevated h-fit">
+          <div className="p-6 flex flex-col gap-6">
+            <h1>
+              <span className="text-3xl font-bold">
+                {formatCurrency(group.monthlyPrice)}
+              </span>
+              <span className="text-muted">&nbsp;/&nbsp;month</span>
+            </h1>
 
-          <div>
-            <p className="flex justify-between items-center gap-6 mb-2">
-              <span>3 / 4 Members</span>
-              <span className="text-sm text-muted">75% Full</span>
+            <div>
+              <p className="flex justify-between items-center gap-6 mb-2">
+                <span>3 / 4 Members</span>
+                <span className="text-sm text-muted">75% Full</span>
+              </p>
+              <Progress max={group.maxMembers} value={3} />
+            </div>
+
+            <p className="text-sm text-muted">
+              Renews in {calculateDaysLeft(group.renewalDate)} days
             </p>
-            <Progress max={group.maxMembers} value={3} />
           </div>
 
-          <p className="text-sm text-muted border-b border-border pb-4">
-            Renews in {calculateDaysLeft(group.renewalDate)} days
-          </p>
-
-          <button className="hero-cta-gradient p-4 font-bold rounded-lg">
-            Join Group
-          </button>
-          <p className="text-muted text-sm text-center">
-            Secure payment via M-PESA
-          </p>
+          <div className="p-6 flex flex-col border-t border-border">
+            <Link
+              href={"#"}
+              className="hero-cta-gradient text-center p-4 font-bold rounded-lg mb-6"
+            >
+              Join Group
+            </Link>
+            <p className="text-muted text-sm text-center flex gap-2 items-center justify-center">
+              <CiLock /> Secure payment via M-PESA
+            </p>
+          </div>
         </article>
       </section>
 
@@ -110,31 +145,112 @@ export default function GroupDetailsPage() {
           <button>Renewal History</button>
         </menu>
 
-        <div className="flex gap-6">
-          <ul className="bg-elevated rounded-lg border border-border text-sm w-100">
-            <PlanInfo name="Plan" value="Mega Fan" />
-            <PlanInfo name="Resolution" value="Up to 4K" />
-            <PlanInfo name="Screens" value="4 Screens" />
-            <PlanInfo name="Renewal Date" value="May 25, 2026" />
-            <PlanInfo name="Created" value="Apr 25,2025" />
-            <PlanInfo name="Minimum Commitment" value="1 Month" />
-          </ul>
+        <div>
+          <div className="flex gap-6 mb-6">
+            <ul className="bg-elevated rounded-lg border border-border text-sm w-100">
+              <PlanInfo name="Plan" value={group.plan} />
+              <PlanInfo name="Resolution" value="Up to 4K" />
+              <PlanInfo name="Screens" value="4 Screens" />
+              <PlanInfo
+                name="Renewal Date"
+                value={formatDate(group.renewalDate)}
+              />
+              <PlanInfo name="Created" value={formatDate(group.createdAt)} />
+              <PlanInfo name="Minimum Commitment" value="1 Month" />
+            </ul>
 
-          <div className="grid grid-cols-2 gap-6 *:bg-elevated *:rounded-xl *:p-6">
-            <article>
-              <h1 className="font-bold mb-4">About the group</h1>
-              <p className="text-muted text-sm mb-4">{group.description}</p>
+            <div className="grid grid-cols-2 gap-6 *:bg-elevated *:rounded-xl">
+              <article className="p-6">
+                <h1 className="font-bold mb-4">About the group</h1>
+                <p className="text-muted text-sm mb-4">{group.description}</p>
 
-              <ul className="text-muted text-sm flex flex-col gap-2">
-                <li>No password sharing</li>
-                <li>Be respectfull</li>
-                <li>No account charges</li>
-              </ul>
-            </article>
+                <ul className="text-muted text-sm flex flex-col gap-2 *:flex *:items-center *:gap-2">
+                  <li>
+                    <FaBan className="text-error" /> No password sharing
+                  </li>
+                  <li>
+                    <FaBan className="text-warning" /> Be respectful
+                  </li>
+                  <li>
+                    <FaBan className="text-warning" /> No account changes
+                  </li>
+                </ul>
+              </article>
 
-            <article>
-              <h1 className="font-bold mb-4">Owner</h1>
-            </article>
+              <article>
+                <div className="p-6 mb-auto">
+                  <h1 className="font-bold mb-4">Owner</h1>
+                  <div className="flex gap-4">
+                    <Avatar
+                      src={owner.avatar}
+                      alt={owner.username}
+                      size={100}
+                      className="w-30 h-30"
+                    />
+                    <div className="flex flex-col gap-1 text-xs text-muted pt-2">
+                      <h2 className="text-xl font-semibold text-text">
+                        {owner.username}
+                      </h2>
+                      <p>Member since {formatDate(owner.createdAt)}</p>
+                      <p className="flex items-center gap-1">
+                        <FaStar className="text-sm text-yellow-500" />
+                        <span className="text-lg font-semibold text-yellow-500">
+                          {owner.rating.toFixed(1)}
+                        </span>
+                        <span>({owner.totalReviews} reviews)</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6 border-t border-border">
+                  <button className="border border-border p-4 text-sm font-semibold rounded-lg w-full">
+                    Message Owner
+                  </button>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div className="bg-linear-to-t from-background to-elevated rounded-xl">
+            <div className="flex gap-2 justify-between items-center p-6">
+              <h1 className="text-lg font-bold">Recent Reviews</h1>
+              <Link href={"#"} className="text-secondary text-sm">
+                View all
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              {users.slice(0, 3).map((user) => (
+                <article
+                  key={user.id}
+                  className="p-4 bg-elevated shadow rounded-xl flex gap-4 text-sm"
+                >
+                  <Avatar
+                    src={user.avatar}
+                    alt={user.username}
+                    className="w-14 h-14"
+                  />
+                  <div className="w-full">
+                    <div className="flex items-center gap-6 border-b border-border w-full py-2 mb-2">
+                      <h1 className="font-semibold">@{user.username}</h1>
+                      <div className="flex gap-0.5 text-yellow-500 text-xs">
+                        {getStars(5)}
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted mb-2">
+                      {Math.abs(calculateDaysLeft(user.createdAt))} days ago
+                    </p>
+                    <p className="text-xs text-mute">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Numquam inventore dicta repellat repellendus velit
+                      molestiae voluptates ipsa, fuga mollitia laudantium
+                      provident quos enim officiis, dolorum, tempora odit
+                      perspiciatis error! Voluptates!
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

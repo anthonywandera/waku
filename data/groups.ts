@@ -19,6 +19,7 @@ export const groups: Group[] = [
       "https://png.pngtree.com/thumb_back/fh260/background/20250709/pngtree-beautiful-anime-princess-in-elegant-gown-fantasy-art-image_17586506.webp",
     renewalDate: "7/24/2026",
     createdAt: "12/9/2025",
+    totalReviews: 48,
   },
   {
     id: "02",
@@ -38,6 +39,7 @@ export const groups: Group[] = [
     coverImage: "https://4kwallpapers.com/images/walls/thumbs/23027.jpg",
     renewalDate: "7/14/2026",
     createdAt: "12/9/2025",
+    totalReviews: 12,
   },
   {
     id: "03",
@@ -57,6 +59,7 @@ export const groups: Group[] = [
       "https://www.shutterstock.com/image-illustration/anime-eyes-closeup-boy-260nw-2490556117.jpg",
     renewalDate: "7/4/2026",
     createdAt: "12/9/2025",
+    totalReviews: 19,
   },
   {
     id: "04",
@@ -76,5 +79,6 @@ export const groups: Group[] = [
       "https://png.pngtree.com/png-vector/20231227/ourmid/pngtree-kawai-anime-girl-vector-png-image_11382225.png",
     renewalDate: "6/9/2026",
     createdAt: "12/9/2025",
+    totalReviews: 4,
   },
 ];

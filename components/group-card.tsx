@@ -7,6 +7,7 @@ import { CiCalendar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
 import { MdVerifiedUser } from "react-icons/md";
 import Progress from "./progress";
+import Avatar from "./avatar";
 
 export default function GroupCard({ group }: { group: Group }) {
   const renewalDate = calculateDaysLeft(group.renewalDate);
@@ -36,7 +37,7 @@ export default function GroupCard({ group }: { group: Group }) {
               <FaStar className="text-yellow-500" />
               {group.rating.toFixed(1)}
             </span>
-            <span>(26)</span>
+            <span>({group.totalReviews})</span>
             {group.isVerified && (
               <span className="text-info ml-2 bg-[color-mix(var(--info),transparent_90%)] border border-current p-1 rounded-lg flex items-center gap-1">
                 <MdVerifiedUser />
@@ -56,13 +57,12 @@ export default function GroupCard({ group }: { group: Group }) {
       <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4">
         <div className="flex">
           {groups.slice(0, 4).map((grp) => (
-            <Image
+            <Avatar
               key={grp.id}
               src={grp.profileImage}
               alt={grp.name}
-              width={50}
-              height={50}
-              className="w-8 h-8 rounded-full border-3 border-elevated not-first:-ml-4 object-center object-cover"
+              size={50}
+              className="w-8 not-first:-ml-4"
             />
           ))}
         </div>
@@ -94,6 +94,7 @@ export default function GroupCard({ group }: { group: Group }) {
           className="hero-cta-gradient py-2 px-8 text-sm rounded-md text-center font-bold"
         >
           Join Group
+          {/* View Details */}
         </Link>
       </div>
     </article>
