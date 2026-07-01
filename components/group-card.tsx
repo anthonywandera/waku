@@ -1,5 +1,4 @@
-import { groups } from "@/data";
-import { Group } from "@/types";
+import { Group, User } from "@/types";
 import { calculateDaysLeft, formatCurrency } from "@/util";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,8 +8,16 @@ import { MdVerifiedUser } from "react-icons/md";
 import Progress from "./progress";
 import Avatar from "./avatar";
 
-export default function GroupCard({ group }: { group: Group }) {
+export default function GroupCard({
+  group,
+  members,
+}: {
+  group: Group;
+  members: User[];
+}) {
   const renewalDate = calculateDaysLeft(group.renewalDate);
+  const owner = members.find((m) => m.id === group.ownerId);
+  const slotsLeft = group.maxMembers - members.length;
 
   return (
     <article className="bg-elevated border border-border rounded-xl p-2 flex flex-col gap-2 text-xs">
@@ -56,31 +63,35 @@ export default function GroupCard({ group }: { group: Group }) {
 
       <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4">
         <div className="flex">
-          {groups.slice(0, 4).map((grp) => (
+          {members.slice(0, 4).map((member) => (
             <Avatar
-              key={grp.id}
-              src={grp.profileImage}
-              alt={grp.name}
+              key={member.id}
+              src={member.avatar}
+              alt={member.username}
               size={50}
               className="w-8 not-first:-ml-4"
             />
           ))}
         </div>
-        <Progress max={group.maxMembers} value={3} />
+        <Progress max={group.maxMembers} value={members.length} />
         <div className="flex flex-col items-center">
-          <p className="font-semibold">3 / {group.maxMembers}</p>
-          <p className="w-max text-success">1 slot left</p>
+          <p className="font-semibold">
+            {members.length} / {group.maxMembers}
+          </p>
+          <p className="w-max text-success">
+            {slotsLeft === 1
+              ? `${slotsLeft} slot left`
+              : `${slotsLeft} slots left`}
+          </p>
         </div>
       </div>
 
       <div className="flex justify-between text-muted border-b pb-4 border-border">
-        <p>@{group.ownerId}</p>
-        {renewalDate > 0 ? (
+        <p>@{owner?.username}</p>
+        {renewalDate > 0 && (
           <p className="flex items-center gap-1">
             <CiCalendar /> Renews in {renewalDate} days
           </p>
-        ) : (
-          <p>{group.status}</p>
         )}
       </div>
 
@@ -90,7 +101,7 @@ export default function GroupCard({ group }: { group: Group }) {
           <span className="text-xs font-medium text-muted">/month</span>
         </p>
         <Link
-          href={"/groups/group_id"}
+          href={`/groups/${group.id}`}
           className="hero-cta-gradient py-2 px-8 text-sm rounded-md text-center font-bold"
         >
           Join Group

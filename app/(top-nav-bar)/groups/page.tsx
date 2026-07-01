@@ -1,5 +1,6 @@
 import GroupCard from "@/components/group-card";
-import { groups } from "@/data";
+import { groups, memberships, users } from "@/data";
+import { User } from "@/types";
 import { Metadata } from "next";
 import { CiFilter } from "react-icons/ci";
 // import { FaLock, FaStar } from "react-icons/fa6";
@@ -69,9 +70,20 @@ export default function BrowseGroupsPage() {
 
       <section className="px-12 pb-12">
         <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
-          {groups.map((group) => (
-            <GroupCard key={group.id} group={group} />
-          ))}
+          {groups.map((group) => {
+            const groupMemberships = memberships.filter(
+              (m) => m.groupId === group.id,
+            );
+
+            const groupMembers = groupMemberships.map(
+              (membership) =>
+                users.find((user) => user.id === membership.memberId) as User,
+            );
+
+            return (
+              <GroupCard key={group.id} group={group} members={groupMembers} />
+            );
+          })}
         </div>
       </section>
     </>

@@ -5,5 +5,5 @@ export interface Review {
   ownerId: string;
   stars: number;
   review: string;
-  createdAt: Date;
+  createdAt: string;
 }

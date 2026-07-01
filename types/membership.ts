@@ -4,5 +4,5 @@ export interface Membership {
   memberId: string;
   profileId: string;
   status: "pending" | "active" | "removed" | "expired";
-  joinedAt: Date;
+  joinedAt: string;
 }

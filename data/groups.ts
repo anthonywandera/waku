@@ -4,7 +4,7 @@ export const groups: Group[] = [
   {
     id: "01",
     name: "Otaku Nation",
-    ownerId: "macien_ne",
+    ownerId: "01",
     maxMembers: 4,
     description: "This is an awesome group",
     isVerified: true,
@@ -24,7 +24,7 @@ export const groups: Group[] = [
   {
     id: "02",
     name: "Narobi Club",
-    ownerId: "kakashei",
+    ownerId: "01",
     maxMembers: 4,
     description:
       "We are a chill community of anime lovers. Always renew on time. Join Us!",
@@ -44,7 +44,7 @@ export const groups: Group[] = [
   {
     id: "03",
     name: "Nippon Kenya",
-    ownerId: "specter",
+    ownerId: "02",
     maxMembers: 4,
     description: "This is an awesome group",
     isVerified: true,
@@ -64,7 +64,7 @@ export const groups: Group[] = [
   {
     id: "04",
     name: "Shadow Garden",
-    ownerId: "3kenzspade",
+    ownerId: "03",
     maxMembers: 4,
     description: "This is an awesome group",
     isVerified: true,
