@@ -1,0 +1,60 @@
+import { Membership } from "@/types";
+
+export const memberships: Membership[] = [
+  {
+    id: "01",
+    groupId: "01",
+    memberId: "01",
+    joinedAt: "6/20/2026",
+    profileId: "01",
+    status: "active",
+  },
+  {
+    id: "02",
+    groupId: "01",
+    memberId: "02",
+    joinedAt: "6/20/2026",
+    profileId: "02",
+    status: "active",
+  },
+  {
+    id: "03",
+    groupId: "01",
+    memberId: "03",
+    joinedAt: "6/20/2026",
+    profileId: "03",
+    status: "active",
+  },
+  {
+    id: "04",
+    groupId: "02",
+    memberId: "01",
+    joinedAt: "6/20/2026",
+    profileId: "01",
+    status: "active",
+  },
+  {
+    id: "05",
+    groupId: "02",
+    memberId: "02",
+    joinedAt: "6/20/2026",
+    profileId: "01",
+    status: "active",
+  },
+  {
+    id: "06",
+    groupId: "03",
+    memberId: "02",
+    joinedAt: "6/20/2026",
+    profileId: "01",
+    status: "active",
+  },
+  {
+    id: "07",
+    groupId: "04",
+    memberId: "03",
+    joinedAt: "6/20/2026",
+    profileId: "01",
+    status: "active",
+  },
+];
