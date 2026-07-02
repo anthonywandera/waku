@@ -1,3 +1,7 @@
+import { Review } from "./review";
+import { Transaction } from "./transaction";
+import { User } from "./user";
+
 export interface Group {
   id: string;
   ownerId: string;
@@ -31,4 +35,25 @@ export interface GroupDTO {
   totalReviews: number;
   createdAt: string;
   members: { id: string; username: string; avatar: string; owner: boolean }[];
+  Rules?: string[];
+}
+
+export interface GroupDetailsDTO {
+  group: Group;
+  reviews: Review[];
+  renewalHistory: Transaction[];
+  owner: User;
+  plan: {
+    name: "Crunchyroll Mega Fan";
+    resolution: "720p" | "1080p" | "2K" | "4K";
+    screens: number;
+    minimumCommitment: number;
+  };
+  members: {
+    id: string;
+    username: string;
+    avatar: string;
+    owner: boolean;
+    createdAt: string;
+  }[];
 }
