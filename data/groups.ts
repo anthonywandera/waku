@@ -20,6 +20,11 @@ export const groups: Group[] = [
     renewalDate: "7/24/2026",
     createdAt: "12/9/2025",
     totalReviews: 48,
+    rules: [
+      "No Hentai",
+      "Ensure total silence",
+      "Do not enter anothor user's profile",
+    ],
   },
   {
     id: "02",

@@ -1,4 +1,4 @@
-import { memberships, users } from "@/data";
+import { memberships, reviews, users } from "@/data";
 import { Group, GroupDetailsDTO } from "@/types";
 
 export function createGroupDetailsDTO(group: Group): GroupDetailsDTO {
@@ -12,7 +12,7 @@ export function createGroupDetailsDTO(group: Group): GroupDetailsDTO {
     avatar: member.avatar,
     username: member.username,
     owner: member.id === group.ownerId,
-    createdAt: memberships.find((m) => m.memberId)!.joinedAt,
+    createdAt: memberships.find((m) => m.memberId === member.id)!.joinedAt,
   }));
 
   return {
@@ -20,7 +20,7 @@ export function createGroupDetailsDTO(group: Group): GroupDetailsDTO {
     owner,
     members,
     renewalHistory: [],
-    reviews: [],
+    reviews: reviews.filter((r) => r.groupId === group.id),
     plan: {
       name: "Crunchyroll Mega Fan",
       resolution: "4K",

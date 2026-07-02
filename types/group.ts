@@ -19,6 +19,7 @@ export interface Group {
   rating: number;
   totalReviews: number;
   createdAt: string;
+  rules?: string[];
 }
 
 export interface GroupDTO {
@@ -35,7 +36,6 @@ export interface GroupDTO {
   totalReviews: number;
   createdAt: string;
   members: { id: string; username: string; avatar: string; owner: boolean }[];
-  Rules?: string[];
 }
 
 export interface GroupDetailsDTO {
