@@ -10,7 +10,7 @@ export const groups: Group[] = [
     isVerified: true,
     refundProtected: true,
     monthlyPrice: 150,
-    plan: "Mega Fan",
+    plan: "Crunchyroll Mega Fan",
     rating: 4.5,
     status: "active",
     profileImage:
@@ -31,7 +31,7 @@ export const groups: Group[] = [
     isVerified: false,
     refundProtected: true,
     monthlyPrice: 150,
-    plan: "Mega Fan",
+    plan: "Crunchyroll Mega Fan",
     rating: 4.5,
     status: "active",
     profileImage:
@@ -50,7 +50,7 @@ export const groups: Group[] = [
     isVerified: true,
     refundProtected: false,
     monthlyPrice: 150,
-    plan: "Mega Fan",
+    plan: "Crunchyroll Mega Fan",
     rating: 4.8,
     status: "active",
     profileImage:
@@ -70,7 +70,7 @@ export const groups: Group[] = [
     isVerified: true,
     refundProtected: false,
     monthlyPrice: 150,
-    plan: "Mega Fan",
+    plan: "Crunchyroll Mega Fan",
     rating: 4.0,
     status: "active",
     profileImage:

@@ -1,8 +1,8 @@
-import { groups, memberships, users } from "@/data";
+import { groups } from "@/data";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import GroupCard from "./group-card";
-import { User } from "@/types";
+import { createGroupDTO } from "@/util";
 
 export default function FeaturedGroupsSection() {
   return (
@@ -16,18 +16,7 @@ export default function FeaturedGroupsSection() {
 
       <div className="grid grid-cols-3 gap-4">
         {groups.slice(0, 3).map((group) => {
-          const groupMemberships = memberships.filter(
-            (m) => m.groupId === group.id,
-          );
-
-          const groupMembers = groupMemberships.map(
-            (membership) =>
-              users.find((user) => user.id === membership.memberId) as User,
-          );
-
-          return (
-            <GroupCard key={group.id} group={group} members={groupMembers} />
-          );
+          return <GroupCard key={group.id} group={createGroupDTO(group)} />;
         })}
       </div>
     </section>

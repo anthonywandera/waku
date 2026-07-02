@@ -5,7 +5,7 @@ export interface Group {
   profileImage: string;
   coverImage: string;
   description: string;
-  plan: "Mega Fan";
+  plan: "Crunchyroll Mega Fan";
   monthlyPrice: number;
   maxMembers: number;
   renewalDate: string;
@@ -15,4 +15,20 @@ export interface Group {
   rating: number;
   totalReviews: number;
   createdAt: string;
+}
+
+export interface GroupDTO {
+  id: string;
+  name: string;
+  profileImage: string;
+  plan: "Crunchyroll Mega Fan";
+  monthlyPrice: number;
+  maxMembers: number;
+  renewalDate: string;
+  isVerified: boolean;
+  refundProtected: boolean;
+  rating: number;
+  totalReviews: number;
+  createdAt: string;
+  members: { id: string; username: string; avatar: string; owner: boolean }[];
 }
