@@ -49,7 +49,7 @@ export default function Footer() {
       }}
       className="px-12 pb-8"
     >
-      <div className="flex gap-12 border-b border-border py-12 mb-4">
+      <div className="flex gap-12 border-b border-border py-12 mb-4 max-md:flex-col">
         <article>
           <h1 className="font-bold text-2xl mb-4">WAKU</h1>
           <p className="text-sm text-muted mb-8">
@@ -64,7 +64,7 @@ export default function Footer() {
             ))}
           </nav>
         </article>
-        <div className="grid grid-cols-3 gap-12 w-full">
+        <div className="grid grid-cols-3 gap-12 w-full max-sm:grid-cols-1">
           {sitemap.map((site) => (
             <article key={site.title}>
               <h1 className="font-bold text-lg mb-4">{site.title}</h1>
@@ -93,7 +93,7 @@ export default function Footer() {
               name="email"
               placeholder="Enter your email"
               required
-              className="outline-none p-2"
+              className="outline-none p-2 w-full"
             />
             <button type="submit" className="bg-primary py-2 px-4 rounded-lg">
               <IoSendOutline />

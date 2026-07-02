@@ -15,7 +15,7 @@ export default function Header() {
             WAKU
           </Link>
         </div>
-        <div className="flex gap-12">
+        <div className="flex gap-12 max-md:hidden">
           <Link href={"/"}>Home</Link>
           <Link href={"/groups"}>Browse Groups</Link>
           <Link href={"#"}>How it Works</Link>
