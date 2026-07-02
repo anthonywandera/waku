@@ -38,14 +38,14 @@ export default async function GroupDetailsPage({
 
   return (
     <>
-      <nav className="mx-12 my-6 flex gap-2">
+      <nav className="mx-12 my-6 flex gap-2 max-sm:mx-6 max-sm:my-4 text-muted text-sm">
         <Link href={"/groups"} className="flex items-center gap-4 text-muted">
           <FaArrowLeft /> Browse Groups
         </Link>
         {`/ ${group?.name}`}
       </nav>
 
-      <section className="mx-12 mb-12 flex gap-8">
+      <section className="mx-12 mb-12 flex gap-8 max-sm:mx-6 max-sm:flex-col">
         <article className="border w-full border-border rounded-2xl overflow-hidden bg-[color-mix(var(--elevated),transparent_80%)]">
           <Image
             src={group.coverImage}
@@ -54,7 +54,7 @@ export default async function GroupDetailsPage({
             height={400}
             className="w-full h-70 object-center object-cover"
           />
-          <div className="p-8 relative">
+          <div className="p-8 relative max-sm:p-4">
             <Avatar
               src={group.profileImage}
               alt={group.name}
@@ -63,7 +63,7 @@ export default async function GroupDetailsPage({
             />
             <h1 className="text-2xl font-bold mb-2">{group.name}</h1>
 
-            <div className="flex gap-4 uppercase text-xs mb-2 font-semibold *:p-1 *:rounded-lg *:flex *:items-center *:gap-1">
+            <div className="flex gap-4 uppercase text-xs mb-2 font-semibold *:p-1 *:rounded-lg *:flex *:items-center *:gap-1 max-sm:gap-2">
               <span className="text-info backdrop-blur bg-[color-mix(var(--info),transparent_95%)] border border-[color-mix(var(--info),transparent_70%)]">
                 <MdVerifiedUser />
                 Verified Owner
@@ -94,7 +94,7 @@ export default async function GroupDetailsPage({
           </div>
         </article>
 
-        <article className="w-150 border border-border rounded-2xl bg-elevated h-fit">
+        <article className="w-150 border border-border rounded-2xl bg-elevated h-fit max-sm:w-full">
           <div className="p-6 flex flex-col gap-6">
             <h1>
               <span className="text-3xl font-bold">

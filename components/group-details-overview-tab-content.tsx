@@ -22,8 +22,8 @@ export default function GroupDetailsOverviewTabContent({
   const { group, owner, plan, reviews } = groupDetails;
   return (
     <TabContent id="overview">
-      <div className="flex gap-6 mb-6">
-        <ul className="bg-elevated rounded-lg border border-border text-sm w-100">
+      <div className="flex gap-6 mb-6 max-sm:flex-col">
+        <ul className="bg-elevated rounded-lg border border-border text-sm w-100 max-sm:w-full">
           <PlanInfo name="Plan" value={plan.name} />
           <PlanInfo name="Resolution" value={`Up to ${plan.resolution}`} />
           <PlanInfo name="Screens" value={`${plan.screens} Screens`} />
@@ -35,7 +35,7 @@ export default function GroupDetailsOverviewTabContent({
           />
         </ul>
 
-        <div className="grid grid-cols-2 w-full gap-6 *:bg-elevated *:rounded-xl">
+        <div className="grid grid-cols-2 w-full gap-6 max-sm:grid-cols-1 *:bg-elevated *:rounded-xl">
           <article className="p-6">
             <h1 className="font-bold mb-4">About the group</h1>
             <p className="text-muted text-sm mb-4">{group.description}</p>
@@ -78,6 +78,7 @@ export default function GroupDetailsOverviewTabContent({
                 </div>
               </div>
             </div>
+
             <div className="p-6 border-t border-border">
               <button className="border border-border p-4 text-sm font-semibold rounded-lg w-full">
                 Message Owner
@@ -96,7 +97,7 @@ export default function GroupDetailsOverviewTabContent({
             </TabTrigger>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
             {reviews.slice(0, 3).map((review) => (
               <ReviewCard key={review.id} review={review} />
             ))}

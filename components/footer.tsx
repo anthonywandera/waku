@@ -47,7 +47,7 @@ export default function Footer() {
         background:
           "linear-gradient(to top,var(--background),transparent 40%), linear-gradient(to right,transparent ,var(--elevated) 10% 90%,transparent)",
       }}
-      className="px-12 pb-8"
+      className="px-12 pb-8 max-sm:px-6"
     >
       <div className="flex gap-12 border-b border-border py-12 mb-4 max-md:flex-col">
         <article>

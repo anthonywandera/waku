@@ -13,9 +13,9 @@ export default function GroupDetailsTabs({
 }) {
   const { members, reviews, renewalHistory } = groupDetails;
   return (
-    <section className="mx-12 mb-12">
+    <section className="mx-12 mb-12 max-sm:mx-6">
       <Tabs initial="overview">
-        <TabsMenu className="flex gap-6 border-b border-border mb-6 text-muted *:rounded-t-lg *:pb-6 *:hover:bg-elevated *:px-4">
+        <TabsMenu className="flex gap-6 border-b border-border mb-6 text-muted max-sm:text-sm max-sm:gap-3 *:rounded-t-lg *:pb-6 *:hover:bg-elevated *:px-4 *:max-sm:px-1">
           <TabTrigger id="overview" activeClass="border-b-2 border-secondary">
             Overview
           </TabTrigger>

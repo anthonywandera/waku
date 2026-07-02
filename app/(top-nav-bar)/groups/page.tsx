@@ -21,7 +21,7 @@ export default function BrowseGroupsPage() {
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className="px-12 pt-24 pb-8 -mt-12"
+        className="px-12 pt-24 pb-8 -mt-12 max-sm:px-6 max-sm:pt-12 max-sm:-mt-6"
       >
         <h1 className="text-3xl font-bold mb-2">Browse Groups</h1>
         <p className="mb-4 text-muted">
@@ -41,8 +41,8 @@ export default function BrowseGroupsPage() {
             Secure Payments
           </span>
         </div> */}
-        <div className="flex items-center justify-between">
-          <div className="border border-border backdrop-blur w-100 rounded-xl flex items-center bg-[color-mix(var(--elevated),transparent_50%)]">
+        <div className="flex items-center justify-between max-sm:flex-col max-sm:gap-4">
+          <div className="border border-border backdrop-blur w-100 rounded-xl flex items-center bg-[color-mix(var(--elevated),transparent_50%)] max-sm:w-full">
             <label htmlFor="search" className="pl-4 text-2xl">
               <IoSearch />
             </label>
@@ -54,7 +54,8 @@ export default function BrowseGroupsPage() {
               className="outline-none p-3 w-full"
             />
           </div>
-          <div className="flex gap-4">
+
+          <div className="flex gap-4 max-sm:text-sm">
             <button className="border border-border backdrop-blur rounded-xl py-2 px-4 flex gap-4 items-center bg-[color-mix(var(--elevated),transparent_50%)]">
               <span className="text-muted">Sort by:</span>
               <span className="flex gap-2 items-center">
@@ -68,7 +69,7 @@ export default function BrowseGroupsPage() {
         </div>
       </section>
 
-      <section className="px-12 pb-12">
+      <section className="px-12 pb-12 max-sm:px-6">
         <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
           {groups.map((group) => {
             return <GroupCard key={group.id} group={createGroupDTO(group)} />;

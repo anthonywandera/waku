@@ -7,7 +7,7 @@ export default function Header() {
         backgroundImage:
           "linear-gradient(170deg,color-mix(in srgb, var(--primary),#000000ee 90%) 50%, transparent)",
       }}
-      className="py-6 px-12 sticky top-0 backdrop-blur-xl z-50"
+      className="py-6 px-12 sticky top-0 backdrop-blur-xl z-50 max-sm:px-6 max-sm:py-4"
     >
       <nav className="flex justify-between gap-12 items-center text-sm">
         <div>

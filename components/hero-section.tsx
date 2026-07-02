@@ -63,7 +63,7 @@ export default function HeroSection() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
-      className="p-12 pt-36 -mt-12"
+      className="p-12 pt-36 -mt-12 max-sm:p-6 max-sm:pt-24 max-sm:-mt-6"
     >
       <article className="flex flex-col gap-6 mb-12">
         <div className="text-5xl font-extrabold flex flex-col gap-2">
@@ -75,7 +75,7 @@ export default function HeroSection() {
           <p>Premium Crunchyroll groups.</p>
           <p>Trusted by anime fans.</p>
         </div>
-        <div className="flex gap-3 font-semibold *:rounded-lg *:py-3 *:px-6">
+        <div className="flex gap-3 font-semibold max-sm:flex-col *:rounded-lg *:py-3 *:px-6">
           <Link
             href={"#"}
             className="hero-cta-gradient flex items-center gap-4"
@@ -89,8 +89,9 @@ export default function HeroSection() {
           </Link>
         </div>
       </article>
+
       <div className="flex flex-col gap-6 *:border *:border-border *:backdrop-blur *:p-4 *:rounded-xl *:bg-[color-mix(in_srgb,var(--elevated),#0000_90%)]">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6 max-md:grid-cols-2 max-sm:grid-cols-1">
           {platformFeatures.map((feature) => (
             <article key={feature.title} className="flex items-center gap-3">
               <div
@@ -109,7 +110,8 @@ export default function HeroSection() {
             </article>
           ))}
         </div>
-        <div className="grid grid-cols-4 gap-6">
+
+        <div className="grid grid-cols-4 gap-6 max-md:grid-cols-2">
           <Stat value={platformStats.activeMembers} title="Active Members" />
           <Stat value={platformStats.activeGroups} title="Active Groups" />
           <Stat
