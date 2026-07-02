@@ -2,28 +2,18 @@ import Avatar from "@/components/avatar";
 import Progress from "@/components/progress";
 import { groups, reviews, users } from "@/data";
 import { User } from "@/types";
-import { calculateDaysLeft, formatCurrency } from "@/util";
+import {
+  calculateDaysLeft,
+  formatCurrency,
+  formatDate,
+  getStars,
+} from "@/util";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CiLock } from "react-icons/ci";
 import { FaArrowLeft, FaBan, FaStar } from "react-icons/fa6";
 import { MdVerifiedUser } from "react-icons/md";
-
-function formatDate(date: string, options?: Intl.DateTimeFormatOptions) {
-  const formatter = new Intl.DateTimeFormat(navigator.language, {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    ...options,
-  });
-
-  return formatter.format(new Date(date));
-}
-
-function getStars(value: number) {
-  return Array.from({ length: value }, (_, i) => <FaStar key={i} />);
-}
 
 function PlanInfo({ name, value }: { name: string; value: string }) {
   return (
