@@ -93,7 +93,7 @@ export default function Footer() {
               name="email"
               placeholder="Enter your email"
               required
-              className="outline-none p-2 w-full"
+              className="outline-none p-2 max-md:w-full"
             />
             <button type="submit" className="bg-primary py-2 px-4 rounded-lg">
               <IoSendOutline />
