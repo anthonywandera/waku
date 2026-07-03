@@ -41,8 +41,8 @@ export default function BrowseGroupsPage() {
             Secure Payments
           </span>
         </div> */}
-        <div className="flex items-center justify-between max-sm:flex-col max-sm:gap-4">
-          <div className="border border-border backdrop-blur w-100 rounded-xl flex items-center bg-[color-mix(var(--elevated),transparent_50%)] max-sm:w-full">
+        <div className="flex items-center justify-between max-md:flex-col max-md:gap-4">
+          <div className="border border-border backdrop-blur w-100 rounded-xl flex items-center bg-[color-mix(var(--elevated),transparent_50%)] max-md:w-full">
             <label htmlFor="search" className="pl-4 text-2xl">
               <IoSearch />
             </label>
@@ -70,7 +70,7 @@ export default function BrowseGroupsPage() {
       </section>
 
       <section className="px-12 pb-12 max-sm:px-6">
-        <div className="grid grid-cols-3 gap-4 max-sm:grid-cols-1">
+        <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
           {groups.map((group) => {
             return <GroupCard key={group.id} group={createGroupDTO(group)} />;
           })}
