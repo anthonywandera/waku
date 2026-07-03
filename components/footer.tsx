@@ -7,8 +7,8 @@ const sitemap: { title: string; links: { title: string; url: string }[] }[] = [
   {
     title: "Platform",
     links: [
-      { title: "Browse Groups", url: "#" },
-      { title: "How it Works", url: "#" },
+      { title: "Browse Groups", url: "/groups" },
+      { title: "How it Works", url: "/#how-it-works" },
       { title: "Trust & Safety", url: "#" },
       { title: "Pricing", url: "#" },
     ],

@@ -39,15 +39,15 @@ const platformFeatures: {
 ];
 
 const platformStats = {
-  activeMembers: formatNumber(128),
-  activeGroups: 9,
+  activeMembers: formatNumber(12, { notation: "compact" }),
+  activeGroups: formatNumber(8, { notation: "compact" }),
   successfulRenewals: formatNumber(0.97, { style: "percent" }),
   averageOwnerRating: 4.8,
 };
 
 function Stat({ title, value }: { title: string; value: number | string }) {
   return (
-    <article className="text-center not-last:border-r border-border">
+    <article className="text-center not-last:border-r border-border max-md:border-none">
       <h1 className="text-4xl font-semibold mb-2 text-primary">{value}</h1>
       <h2 className="text-xs text-muted">{title}</h2>
     </article>
