@@ -75,15 +75,15 @@ export default function HeroSection() {
           <p>Premium Crunchyroll groups.</p>
           <p>Trusted by anime fans.</p>
         </div>
-        <div className="flex gap-3 font-semibold max-sm:flex-col *:rounded-lg *:py-3 *:px-6">
+        <div className="flex gap-3 font-semibold max-sm:flex-col *:max-sm:w-fit *:rounded-lg *:py-3 *:px-6">
           <Link
-            href={"#"}
+            href={"/groups"}
             className="hero-cta-gradient flex items-center gap-4"
           >
             Explore Crunchyroll Groups
             <FaArrowRight />
           </Link>
-          <Link href={"#"} className="flex gap-2 items-center">
+          <Link href={"/#how-it-works"} className="flex gap-2 items-center">
             <FaRegPlayCircle className="text-2xl" />
             How it works
           </Link>

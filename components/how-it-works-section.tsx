@@ -22,7 +22,7 @@ const howItWorks = [
 ];
 export default function HowItWorksSection() {
   return (
-    <section className="m-12 max-sm:m-6">
+    <section id="how-it-works" className="m-12 max-sm:m-6">
       <h1 className="font-bold text-2xl text-center mb-4">How Waku Works</h1>
       <div className="grid grid-cols-4 gap-12 p-4 backdrop-blur bg-[color-mix(var(--elevated),transparent_30%)] rounded-xl max-md:grid-cols-2 max-sm:grid-cols-1">
         {howItWorks.map((step) => (
