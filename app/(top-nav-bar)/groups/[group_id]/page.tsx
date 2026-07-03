@@ -45,7 +45,7 @@ export default async function GroupDetailsPage({
         {`/ ${group?.name}`}
       </nav>
 
-      <section className="mx-12 mb-12 flex gap-8 max-sm:mx-6 max-sm:flex-col">
+      <section className="mx-12 mb-12 flex gap-8 max-sm:mx-6 max-md:flex-col">
         <article className="border w-full border-border rounded-2xl overflow-hidden bg-[color-mix(var(--elevated),transparent_80%)]">
           <Image
             src={group.coverImage}
@@ -94,7 +94,7 @@ export default async function GroupDetailsPage({
           </div>
         </article>
 
-        <article className="w-150 border border-border rounded-2xl bg-elevated h-fit max-sm:w-full">
+        <article className="w-150 border border-border rounded-2xl bg-elevated h-fit max-md:w-full">
           <div className="p-6 flex flex-col gap-6">
             <h1>
               <span className="text-3xl font-bold">
@@ -105,7 +105,9 @@ export default async function GroupDetailsPage({
 
             <div>
               <p className="flex justify-between items-center gap-6 mb-2">
-                <span>3 / 4 Members</span>
+                <span>
+                  {members.length} / {group.maxMembers} Members
+                </span>
                 <span className="text-sm text-muted">
                   {formatNumber(members.length / group.maxMembers, {
                     style: "percent",
