@@ -28,7 +28,7 @@ export const groups: Group[] = [
   },
   {
     id: "02",
-    name: "Narobi Club",
+    name: "Nairobi Club",
     ownerId: "01",
     maxMembers: 4,
     description:
@@ -59,9 +59,9 @@ export const groups: Group[] = [
     rating: 4.8,
     status: "active",
     profileImage:
-      "https://a.storyblok.com/f/178900/1920x1080/cfccdef6c1/the-apothecary-diaries-still.jpg/m/1200x0/filters:quality(95)format(webp)",
+      "https://images.stockcake.com/public/2/3/7/23754627-0a14-4855-971d-49de7b8aecfc_large/intense-anime-portrait-stockcake.jpg",
     coverImage:
-      "https://www.shutterstock.com/image-illustration/anime-eyes-closeup-boy-260nw-2490556117.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkozdF8hQelDFl3YiRvX6gnLipgNcO4rgAimrRkSwBL4m8BKNdO-Q0S0I&s=10",
     renewalDate: "7/4/2026",
     createdAt: "12/9/2025",
     totalReviews: 19,

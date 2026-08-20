@@ -23,6 +23,7 @@ export default function Avatar({
       width={size}
       height={size}
       {...props}
+      unoptimized
       className={`aspect-square rounded-full border-3 border-elevated object-center object-cover ${className}`}
     />
   );

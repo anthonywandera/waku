@@ -125,7 +125,7 @@ export default async function GroupDetailsPage({
 
           <div className="p-6 flex flex-col border-t border-border">
             <Link
-              href={"#"}
+              href={`/groups/${group.id}/join`}
               className="hero-cta-gradient text-center p-4 font-bold rounded-lg mb-6"
             >
               Join Group
