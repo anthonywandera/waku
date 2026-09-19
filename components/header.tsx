@@ -23,10 +23,10 @@ export default function Header() {
           <Link href={"#"}>FAQ</Link>
         </div>
         <div className="flex gap-3 font-semibold *:rounded-lg *:py-2 *:px-3">
-          <Link href={"#"} className="border border-border">
+          <Link href={"/login"} className="border border-border">
             Log in
           </Link>
-          <Link href={"#"} className="hero-cta-gradient">
+          <Link href={"/signup"} className="hero-cta-gradient">
             Sign up
           </Link>
         </div>
