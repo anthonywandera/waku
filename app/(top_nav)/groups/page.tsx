@@ -1,6 +1,5 @@
 import GroupCard from "@/components/group-card";
-import { groups } from "@/data";
-import { createGroupDTO } from "@/util";
+import { Group } from "@/types";
 import { Metadata } from "next";
 import { CiFilter } from "react-icons/ci";
 // import { FaLock, FaStar } from "react-icons/fa6";
@@ -10,7 +9,11 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 
 export const metadata: Metadata = { title: "Cruncyroll Groups" };
 
-export default function BrowseGroupsPage() {
+export default async function BrowseGroupsPage() {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/groups`).then<
+    Group[]
+  >((res) => res.json());
+
   return (
     <>
       <section
@@ -71,8 +74,8 @@ export default function BrowseGroupsPage() {
 
       <section className="px-12 pb-12 max-sm:px-6">
         <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
-          {groups.map((group) => {
-            return <GroupCard key={group.id} group={createGroupDTO(group)} />;
+          {data.map((group) => {
+            return <GroupCard key={group.id} group={group} />;
           })}
         </div>
       </section>

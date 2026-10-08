@@ -3,30 +3,49 @@ import { Transaction } from "./transaction";
 import { User } from "./user";
 
 export interface Group {
-  id: string;
-  ownerId: string;
+  id: number;
   name: string;
-  profileImage: string;
-  coverImage: string;
-  description: string;
-  plan: "Crunchyroll Mega Fan";
-  monthlyPrice: number;
-  maxMembers: number;
-  renewalDate: string;
-  status: "funding" | "waiting_renewal" | "active" | "expired" | "suspended";
-  isVerified: boolean;
-  refundProtected: boolean;
-  rating: number;
-  totalReviews: number;
+  profileImage?: string;
+  coverImage?: string;
+  description?: string;
+  verified: boolean;
+  protected: boolean;
   createdAt: string;
-  rules?: string[];
+  owner: { id: number; username: string; avatar?: string };
+  maxMembers: number;
+  rating: number;
+  costPerMember: number;
+  slotsLeft: number;
+  subscription?: { active: boolean; expiry: string };
+  plan: {
+    id: number;
+    name: string;
+    region: string;
+    price: number;
+    currency: string;
+    profiles: number;
+  };
+  reviews: {
+    id: number;
+    message: string;
+    rating: number;
+    createdAt: string;
+    author: { username: string; avatar?: string };
+  }[];
+  members: {
+    id: number;
+    username: string;
+    avatar: string;
+    membership: { createdAt: string };
+  }[];
+  rules: { id: number; rule: string }[];
 }
 
 export interface GroupDTO {
   id: string;
   name: string;
   profileImage: string;
-  plan: "Crunchyroll Mega Fan";
+  plan: string;
   monthlyPrice: number;
   maxMembers: number;
   renewalDate: string;

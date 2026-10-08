@@ -1,4 +1,4 @@
-import { GroupDTO } from "@/types";
+import { Group } from "@/types";
 import { calculateDaysLeft, formatCurrency } from "@/util";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,16 +8,17 @@ import { MdVerifiedUser } from "react-icons/md";
 import Progress from "./progress";
 import Avatar from "./avatar";
 
-export default function GroupCard({ group }: { group: GroupDTO }) {
-  const daysLeft = calculateDaysLeft(group.renewalDate);
-  const slotsLeft = group.maxMembers - group.members.length;
-  const owner = group.members.find((m) => m.owner);
+export default function GroupCard({ group }: { group: Group }) {
+  const daysLeft = group.subscription
+    ? calculateDaysLeft(group.subscription.expiry)
+    : 0;
+  const owner = group.owner;
 
   return (
     <article className="bg-elevated border border-border rounded-xl p-2 flex flex-col gap-2 text-xs">
       <div className="flex gap-2 items-center mb-2">
         <Image
-          src={group.profileImage}
+          src={group.profileImage || "/no-image.jpeg"}
           alt={group.name}
           width={100}
           height={100}
@@ -26,7 +27,7 @@ export default function GroupCard({ group }: { group: GroupDTO }) {
         <div className="w-full">
           <h1 className="mb-1 flex gap-2 justify-between items-center">
             <span className="font-bold text-lg">{group.name}</span>
-            {group.refundProtected && (
+            {group.protected && (
               <span className="text-yellow-500 bg-[color-mix(var(--color-yellow-500),transparent_90%)] border border-current p-2 rounded-lg flex items-center gap-1">
                 <FaStar />
                 {/* Refund Guaranteed */}
@@ -34,15 +35,21 @@ export default function GroupCard({ group }: { group: GroupDTO }) {
             )}
           </h1>
           <p className="flex gap-1 items-center text-muted">
-            <span className="flex gap-1 items-center font-semibold">
-              <FaStar className="text-yellow-500" />
-              {group.rating.toFixed(1)}
-            </span>
-            <span>({group.totalReviews})</span>
-            {group.isVerified && (
+            {group.rating !== 0 ? (
+              <>
+                <span className="flex gap-1 items-center font-semibold">
+                  <FaStar className="text-yellow-500" />
+                  {group.rating}
+                </span>
+                <span>({group.reviews.length})</span>
+              </>
+            ) : (
+              "No ratings"
+            )}
+            {group.verified && (
               <span className="text-info ml-2 bg-[color-mix(var(--info),transparent_90%)] border border-current p-1 rounded-lg flex items-center gap-1">
                 <MdVerifiedUser />
-                Verified Owner
+                Verified Group
               </span>
             )}
           </p>
@@ -50,7 +57,7 @@ export default function GroupCard({ group }: { group: GroupDTO }) {
       </div>
 
       <div className="flex items-center gap-2 text-muted mb-2">
-        <span>{group.plan}</span>
+        <span className="capitalize">{group.plan.name}</span>
         <span className="p-0.5 rounded-full bg-muted"></span>
         <span>{group.maxMembers} profiles</span>
       </div>
@@ -73,9 +80,9 @@ export default function GroupCard({ group }: { group: GroupDTO }) {
             {group.members.length} / {group.maxMembers}
           </p>
           <p className="w-max text-success">
-            {slotsLeft === 1
-              ? `${slotsLeft} slot left`
-              : `${slotsLeft} slots left`}
+            {group.slotsLeft === 1
+              ? `${group.slotsLeft} slot left`
+              : `${group.slotsLeft} slots left`}
           </p>
         </div>
       </div>
@@ -91,14 +98,14 @@ export default function GroupCard({ group }: { group: GroupDTO }) {
 
       <div className="flex items-center justify-between">
         <p className="text-lg font-semibold">
-          {formatCurrency(group.monthlyPrice)}
+          {formatCurrency(group.costPerMember / 100)}
           <span className="text-xs font-medium text-muted">/month</span>
         </p>
         <Link
           href={`/groups/${group.id}`}
           className="hero-cta-gradient py-2 px-8 text-sm rounded-md text-center font-bold"
         >
-          Join Group
+          View Group
           {/* View Details */}
         </Link>
       </div>

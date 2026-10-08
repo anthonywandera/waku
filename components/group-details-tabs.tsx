@@ -1,17 +1,12 @@
-import { GroupDetailsDTO } from "@/types";
 import { TabContent, Tabs, TabsMenu, TabTrigger } from "./tabs";
 import GroupDetailsOverviewTabContent from "./group-details-overview-tab-content";
 import ReviewCard from "./review-card";
 import Avatar from "./avatar";
 import { formatDate } from "@/util";
 import { FaCheck } from "react-icons/fa6";
+import { Group } from "@/types";
 
-export default function GroupDetailsTabs({
-  groupDetails,
-}: {
-  groupDetails: GroupDetailsDTO;
-}) {
-  const { members, reviews, renewalHistory } = groupDetails;
+export default function GroupDetailsTabs({ group }: { group: Group }) {
   return (
     <section className="mx-12 mb-12 max-sm:mx-6">
       <Tabs initial="overview">
@@ -20,29 +15,20 @@ export default function GroupDetailsTabs({
             Overview
           </TabTrigger>
           <TabTrigger id="members" activeClass="border-b-2 border-secondary">
-            Members ({members.length})
+            Members ({group.members.length})
           </TabTrigger>
           <TabTrigger id="reviews" activeClass="border-b-2 border-secondary">
-            Reviews ({reviews.length})
+            Reviews ({group.reviews.length})
           </TabTrigger>
-          {groupDetails.group.rules && groupDetails.group.rules.length > 0 && (
+          {group.rules.length !== 0 && (
             <TabTrigger id="rules" activeClass="border-b-2 border-secondary">
               Rules
             </TabTrigger>
           )}
-          {groupDetails.renewalHistory &&
-            groupDetails.renewalHistory.length > 0 && (
-              <TabTrigger
-                id="renewal_history"
-                activeClass="border-b-2 border-secondary"
-              >
-                Renewal History
-              </TabTrigger>
-            )}
         </TabsMenu>
 
         {/* overview */}
-        <GroupDetailsOverviewTabContent groupDetails={groupDetails} />
+        <GroupDetailsOverviewTabContent group={group} />
 
         {/* members */}
         <TabContent id="members" className="bg-elevated rounded-lg p-4">
@@ -55,7 +41,7 @@ export default function GroupDetailsTabs({
               </tr>
             </thead>
             <tbody>
-              {members.map((member) => (
+              {group.members.map((member) => (
                 <tr key={member.id} className="*:py-2">
                   <td className="flex gap-1 items-center">
                     <Avatar
@@ -63,12 +49,12 @@ export default function GroupDetailsTabs({
                       alt={member.username}
                       className="w-8 h-8"
                     />
-                    <span>{member.username}</span>
+                    <span className="font-bold">@{member.username}</span>
                   </td>
                   <td className="text-xs text-success">
-                    {member.owner ? "Owner" : ""}
+                    {member.id === group.owner.id ? "Owner" : ""}
                   </td>
-                  <td>{formatDate(member.createdAt)}</td>
+                  <td>{formatDate(member.membership.createdAt)}</td>
                 </tr>
               ))}
             </tbody>
@@ -76,34 +62,34 @@ export default function GroupDetailsTabs({
         </TabContent>
 
         {/* reviews */}
-        <TabContent id="reviews" className="flex flex-col gap-6">
-          {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+        <TabContent
+          id="reviews"
+          className="grid grid-cols-2 gap-6 max-md:grid-cols-1"
+        >
+          {group.reviews.map((review) => (
+            <ReviewCard
+              key={review.id}
+              message={review.message}
+              rating={review.rating}
+              createdAt={review.createdAt}
+              avatar={review.author.avatar}
+              username={review.author.username}
+            />
           ))}
         </TabContent>
 
         {/* rules */}
-        {groupDetails.group.rules && groupDetails.group.rules.length > 0 && (
+        {group.rules.length !== 0 && (
           <TabContent id="rules">
             <ul className="py-2 bg-elevated rounded-lg *:not-last:border-b *:border-border *:py-2 *:px-4">
-              {groupDetails.group.rules.map((rule) => (
-                <li key={rule} className="flex items-center gap-2">
-                  <FaCheck /> {rule}
+              {group.rules.map((rule) => (
+                <li key={rule.id} className="flex items-center gap-2">
+                  <FaCheck /> {rule.rule}
                 </li>
               ))}
             </ul>
           </TabContent>
         )}
-
-        {/* renewal history */}
-        {groupDetails.renewalHistory &&
-          groupDetails.renewalHistory.length > 0 && (
-            <TabContent id="renewal_history">
-              {renewalHistory.map((renewal) => (
-                <div key={renewal.id}>{renewal.amount}</div>
-              ))}
-            </TabContent>
-          )}
       </Tabs>
     </section>
   );

@@ -1,10 +1,15 @@
-import { groups } from "@/data";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import GroupCard from "./group-card";
-import { createGroupDTO } from "@/util";
+import { Group } from "@/types";
 
-export default function FeaturedGroupsSection() {
+export default async function FeaturedGroupsSection() {
+  const groups = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/groups?featured=true`,
+  ).then<Group[]>((res) => {
+    return res.json();
+  });
+
   return (
     <section className="m-12 max-sm:m-6">
       <div className="flex justify-between mb-4">
@@ -16,7 +21,7 @@ export default function FeaturedGroupsSection() {
 
       <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
         {groups.slice(0, 3).map((group) => {
-          return <GroupCard key={group.id} group={createGroupDTO(group)} />;
+          return <GroupCard key={group.id} group={group} />;
         })}
       </div>
     </section>
